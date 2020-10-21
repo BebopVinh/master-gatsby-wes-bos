@@ -1,0 +1,1 @@
+-  add vegetarian icon next to pizzas with all veggie toppings
