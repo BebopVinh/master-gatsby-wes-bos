@@ -36,7 +36,6 @@ export default function Layout({ children }) {
       <SiteBorderStyles>
         <ContentStyles>
           <Nav />
-          <p>I'm the page's contents.</p>
           {children}
           <Footer />
         </ContentStyles>

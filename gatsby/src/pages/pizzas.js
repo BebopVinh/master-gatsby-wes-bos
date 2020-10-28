@@ -1,10 +1,40 @@
 import React from 'react';
-import Layout from '../components/Layout';
+import { graphql } from 'gatsby';
+import PizzaList from '../components/PizzaList';
 
-export default function PizzasPage() {
+export default function PizzasPage({ data }) {
+  const pizzas = data.pizzas.nodes;
   return (
     <>
-      <p>Hey, I'm the pizza page!</p>
+      <PizzaList pizzas={pizzas} />
     </>
   );
 }
+//  GatsbySanityImageFluid fragment is part of the plugin
+export const query = graphql`
+  query {
+    pizzas: allSanityPizza {
+      nodes {
+        id
+        name
+        slug {
+          current
+        }
+        toppings {
+          id
+          name
+        }
+        image {
+          asset {
+            fixed(width: 200, height: 200) {
+              ...GatsbySanityImageFixed
+            }
+            fluid(maxWidth: 400) {
+              ...GatsbySanityImageFluid
+            }
+          }
+        }
+      }
+    }
+  }
+`;
